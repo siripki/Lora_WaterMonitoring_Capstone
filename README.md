@@ -2,4 +2,4 @@
  Lora Water Monitoring System (Temp, pH, WaterLevel)
  Include GUI for sensor configuration
 
-[GUI Preview](https://siripki.github.io/GUI_Preview/)
+[GUI Preview](https://siripki.github.io/Lora_WaterMonitoring_Capstone/)

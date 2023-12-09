@@ -1,7 +1,7 @@
 void connectivitySetup() {
   switch (connectivityType) {
     case 1:  //sendData using protocol LoRaWAN
-      //loraSetup();
+      loraSetup();
       break;
     case 2:  //sendData using protocol MQTT via GSM
       gsmSetup();
@@ -17,7 +17,7 @@ void connectivitySetup() {
     case 5:  //sendData using protocol MQTT via Ethernet
       debugE("OFFLINE MODE");
       break;
-    default:  //LoRaWAN
+    default:  //OFFLINE
       debugE("OFFLINE MODE");
       //sfdfs
       break;
@@ -25,12 +25,9 @@ void connectivitySetup() {
 }
 
 //LoRaWAN
-/*void loraSetup() {
-  loraOn();
+void loraSetup() {
   if (!lora.init()) {
     debugE("Problem : Lora");
-    turnOnLED(255, 100, 0, 1, 500);
-    turnOnLED(255, 0, 0, 3, 500);
     delay(2000);
     return;
   }
@@ -104,20 +101,18 @@ void connectivitySetup() {
   lora.setDevAddr(devAddr.c_str());
 }
 void sendData_Lora(String msg, char *msgSeq) {
-  loraOn();
   //loraSetup();
   //lora.update();
   char myStr[msg.length() + 1];
   msg.toCharArray(myStr, msg.length() + 1);
   lora.sendUplink(myStr, strlen(myStr), 0);
   lora.update();
-  turnOnLED(22, 205, 250, 2, 80);
-  turnOnLED(0, 204, 0, 0, 0);
   debugE(myStr);  //debug
   debugE(msgSeq);
   debugE(" ");
+  ledBlink();
   delay(3000);
-}*/
+}
 
 //GSM
 void gsmSetup() {
@@ -229,7 +224,7 @@ void sendData_Mqtt(String msg, PubSubClient &mqttType) {
 void sendData(String msg) {
   switch (connectivityType) {
     case 1:  //sendData using protocol LoRaWAN
-      //sendData_Lora(msg, " ");
+      sendData_Lora(msg, " ");
       break;
     case 2:  //sendData using protocol MQTT via GSM
       gsmCheck();

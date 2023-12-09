@@ -144,7 +144,7 @@
                                         <div class="tile-content">
                                             <div class="tile-title">Water Level</div>
                                             <span id="wlValueID"class="tile-subtitle h4" style="line-height: 1.5rem;">%wlValue%</span>
-                                            <span class="tile-subtitle h4" style="line-height: 1.5rem;">&percnt;</span>
+                                            <span class="tile-subtitle h4" style="line-height: 1.5rem;">cm</span>
                                         </div>
                                     </div>
                                 </div>
@@ -158,22 +158,25 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
+                                        <span class="tile-subtitle h5" style="line-height: 1.5rem;">Y Value : </span>
+                                            <span id="yValueID"  class="tile-subtitle h5" style="line-height: 1.5rem;">%yValue%</span>
+                                            <span class="tile-subtitle h5" style="line-height: 1.5rem;">cm</span>
                                         <div style="display: flex; justify-content: center; align-items: center; height: 100;">
                                             <img src="assets/ultrasonic.svg" height="300" alt="Water Level Point">
                                         </div>
                                         <div class="columns">
                                             <div class="column col-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">X Value</label>
-                                                    <input class="form-input" type="text" name="xValue" step="0.001"
-                                                        value="%xValue%" placeholder="X Value" required>
+                                                    <label class="form-label">X Calibration</label>
+                                                    <input class="form-input" type="text" name="xCal" step="0.001"
+                                                        value="%xCal%" placeholder="X Calibration" required>
                                                 </div>
                                             </div>
                                             <div class="column col-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">Y Value</label>
-                                                    <input class="form-input" type="text" name="yValue"
-                                                        value="%yValue%" placeholder="Y Value" required>
+                                                    <label class="form-label">Y Calibration</label>
+                                                    <input class="form-input" type="text" name="yCal"
+                                                        value="%yCal%" placeholder="Y Calibration" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -299,14 +302,14 @@
                                                 <div class="form-group">
                                                     <label class="form-label">Channel </label>
                                                     <select id="channelTx" class="form-input" name="channel_tx" required>
-                                                        <option value="10" %selected_MULTI>MULTI</option>
-                                                        <option value="1" %selected_1>1</option>
-                                                        <option value="2" %selected_2>2</option>
-                                                        <option value="3" %selected_3>3</option>
-                                                        <option value="4" %selected_4>4</option>
-                                                        <option value="5" %selected_5>5</option>
-                                                        <option value="6" %selected_6>6</option>
-                                                        <option value="7" %selected_7>7</option>
+                                                        <option value="10">MULTI</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -815,18 +818,19 @@
          var source = new EventSource('/events');
 
          source.addEventListener('temp', function(e) {
-          console.log("temp", e.data);
           document.getElementById("tempID").innerHTML = e.data;
          }, false);
          
          source.addEventListener('phValue', function(e) {
-          console.log("phValue", e.data);
           document.getElementById("phValueID").innerHTML = e.data;
          }, false);
 
-         source.addEventListener('wlvalue', function(e) {
-          console.log("wlvalue", e.data);
-          document.getElementById("wlvalueID").innerHTML = e.data;
+         source.addEventListener('wlValue', function(e) {
+          document.getElementById("wlValueID").innerHTML = e.data;
+         }, false);
+
+         source.addEventListener('yValue', function(e) {
+          document.getElementById("yValueID").innerHTML = e.data;
          }, false);
 
           source.addEventListener('ssid_wifi_connected', function(e) {

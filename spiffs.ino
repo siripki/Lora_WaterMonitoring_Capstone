@@ -48,7 +48,7 @@ void readSettings() {
   sn = readFile("/sn.txt");
   version = readFile("/version.txt");
   board = readFile("/board.txt");
-  type_board = readFile("/type_board.txt");
+  //type_board = readFile("/type_board.txt");
   maintainerName = readFile("/maintainerName.txt");
 
   connectivityType = readFile("/connectivityType.txt").toInt();
@@ -83,83 +83,14 @@ void readSettings() {
 
   uplinkInterval = readFile("/uplinkInterval.txt").toInt();
 
-  statusRelay1 = readFile("/statusRelay1.txt").toInt();
-
-  timeTask1R1Hour = readFile("/timeTask1R1Hour.txt").toInt();
-  timeTask1R1Minute = readFile("/timeTask1R1Minute.txt").toInt();
-  durationTask1R1 = readFile("/durationTask1R1.txt").toInt();
-
-  timeTask2R1Hour = readFile("/timeTask2R1Hour.txt").toInt();
-  timeTask2R1Minute = readFile("/timeTask2R1Minute.txt").toInt();
-  durationTask2R1 = readFile("/durationTask2R1.txt").toInt();
-
-  timeTask3R1Hour = readFile("/timeTask3R1Hour.txt").toInt();
-  timeTask3R1Minute = readFile("/timeTask3R1Minute.txt").toInt();
-  durationTask3R1 = readFile("/durationTask3R1.txt").toInt();
-
-  timeTask4R1Hour = readFile("/timeTask4R1Hour.txt").toInt();
-  timeTask4R1Minute = readFile("/timeTask4R1Minute.txt").toInt();
-  durationTask4R1 = readFile("/durationTask4R1.txt").toInt();
-
-  tempThresR1 = readFile("/tempThresR1.txt").toFloat();
-  humiThresR1 = readFile("/humiThresR1.txt").toFloat();
-  durationSchR1 = readFile("/durationSchR1.txt").toInt();
-  intervalSchR1 = readFile("/intervalSchR1.txt").toInt();
-
-  statusSch1R1 = readFile("/statusSch1R1.txt").toInt();
-  startSch1R1Hour = readFile("/startSch1R1Hour.txt").toInt();
-  startSch1R1Minute = readFile("/startSch1R1Minute.txt").toInt();
-  stopSch1R1Hour = readFile("/stopSch1R1Hour.txt").toInt();
-  stopSch1R1Minute = readFile("/stopSch1R1Minute.txt").toInt();
-
-  statusSch2R1 = readFile("/statusSch2R1.txt").toInt();
-  startSch2R1Hour = readFile("/startSch2R1Hour.txt").toInt();
-  startSch2R1Minute = readFile("/startSch2R1Minute.txt").toInt();
-  stopSch2R1Hour = readFile("/stopSch2R1Hour.txt").toInt();
-  stopSch2R1Minute = readFile("/stopSch2R1Minute.txt").toInt();
-
-  statusRelay2 = readFile("/statusRelay2.txt").toInt();
-
-  timeTask1R2Hour = readFile("/timeTask1R2Hour.txt").toInt();
-  timeTask1R2Minute = readFile("/timeTask1R2Minute.txt").toInt();
-  durationTask1R2 = readFile("/durationTask1R2.txt").toInt();
-
-  timeTask2R2Hour = readFile("/timeTask2R2Hour.txt").toInt();
-  timeTask2R2Minute = readFile("/timeTask2R2Minute.txt").toInt();
-  durationTask2R2 = readFile("/durationTask2R2.txt").toInt();
-
-  timeTask3R2Hour = readFile("/timeTask3R2Hour.txt").toInt();
-  timeTask3R2Minute = readFile("/timeTask3R2Minute.txt").toInt();
-  durationTask3R2 = readFile("/durationTask3R2.txt").toInt();
-
-  timeTask4R2Hour = readFile("/timeTask4R2Hour.txt").toInt();
-  timeTask4R2Minute = readFile("/timeTask4R2Minute.txt").toInt();
-  durationTask4R2 = readFile("/durationTask4R2.txt").toInt();
-
-  tempThresR2 = readFile("/tempThresR2.txt").toFloat();
-  humiThresR2 = readFile("/humiThresR2.txt").toFloat();
-  durationSchR2 = readFile("/durationSchR2.txt").toInt();
-  intervalSchR2 = readFile("/intervalSchR2.txt").toInt();
-
-  statusSch1R2 = readFile("/statusSch1R2.txt").toInt();
-  startSch1R2Hour = readFile("/startSch1R2Hour.txt").toInt();
-  startSch1R2Minute = readFile("/startSch1R2Minute.txt").toInt();
-  stopSch1R2Hour = readFile("/stopSch1R2Hour.txt").toInt();
-  stopSch1R2Minute = readFile("/stopSch1R2Minute.txt").toInt();
-
-  statusSch2R2 = readFile("/statusSch2R2.txt").toInt();
-  startSch2R2Hour = readFile("/startSch2R2Hour.txt").toInt();
-  startSch2R2Minute = readFile("/startSch2R2Minute.txt").toInt();
-  stopSch2R2Hour = readFile("/stopSch2R2Hour.txt").toInt();
-  stopSch2R2Minute = readFile("/stopSch2R2Minute.txt").toInt();
-
-  dateCal = readFile("/dateCal.txt");
-  timeCal = readFile("/timeCal.txt");
+  xCal = readFile("/xCal.txt").toFloat();
+  yCal = readFile("/yCal.txt").toFloat();
   tempCal = readFile("/tempCal.txt").toFloat();
-  humiCal = readFile("/humiCal.txt").toFloat();
+  phCal = readFile("/phCal.txt").toFloat();
 
   tempKey = readFile("/tempKey.txt");
-  humiKey = readFile("/humiKey.txt");
+  phKey = readFile("/phKey.txt");
+  wlKey = readFile("/wlKey.txt");
 }
 
 void dataDefault() {
@@ -167,15 +98,15 @@ void dataDefault() {
   writeFile("/http_username.txt", "admin");
   writeFile("/http_password.txt", "admin");
 
-  writeFile("/apSsid.txt", "Penyiram Otomatis");
+  writeFile("/apSsid.txt", "Water Monitoring");
   writeFile("/apPass.txt", "12345678");
-  //writeFile("/sn.txt", "0");
-  //writeFile("/version.txt", "Firm 3.0 - GUI 2.5");
-  writeFile("/board.txt", "WC-2200-V3-Panel");
-  writeFile("/type_board.txt", "V2");
-  //writeFile("/maintainerName.txt", "siripki");
+  writeFile("/sn.txt", "1");
+  writeFile("/version.txt", "Firm 1.0 - GUI 1.1");
+  writeFile("/board.txt", "Water Monitoring");
+  // writeFile("/type_board.txt", "V2");
+  writeFile("/maintainerName.txt", "siripki");
 
-  writeFile("/connectivityType.txt", "5");
+  writeFile("/connectivityType.txt", "1");
 
   writeFile("/devAddr.txt", "654310c1");
   writeFile("/appSKey.txt", "654310c1dd7a8b849dbf4e49b6d2e9a3");
@@ -183,15 +114,15 @@ void dataDefault() {
   writeFile("/classTx.txt", "1");
   writeFile("/sfTx.txt", "10");
   writeFile("/powerTx.txt", "20");
-  writeFile("/channelTx.txt", "1");
+  writeFile("/channelTx.txt", "10");
 
   writeFile("/apnName.txt", "internet");
   writeFile("/apnUser.txt", "");
   writeFile("/apnPass.txt", "");
 
   writeFile("/wifiIpMode.txt", "DHCP");
-  writeFile("/wifiSsid.txt", "Egrotek");
-  writeFile("/wifiPass.txt", "jamurtiram");
+  writeFile("/wifiSsid.txt", "Nasgor");
+  writeFile("/wifiPass.txt", "ntahlahh");
   writeFile("/wifiLocalIP.txt", "");
   writeFile("/wifiGateway.txt", "");
   writeFile("/wifiSubnet.txt", "");
@@ -207,87 +138,12 @@ void dataDefault() {
 
   writeFile("/uplinkInterval.txt", "1");  //in minute
 
-  // Menulis nilai untuk Relay 1
-  writeFile("/statusRelay1.txt", "0");
-
-  writeFile("/timeTask1R1Hour.txt", "00");
-  writeFile("/timeTask1R1Minute.txt", "00");
-  writeFile("/durationTask1R1.txt", "0");
-
-  writeFile("/timeTask2R1Hour.txt", "00");
-  writeFile("/timeTask2R1Minute.txt", "00");
-  writeFile("/durationTask2R1.txt", "0");
-
-  writeFile("/timeTask3R1Hour.txt", "00");
-  writeFile("/timeTask3R1Minute.txt", "00");
-  writeFile("/durationTask3R1.txt", "0");
-
-  writeFile("/timeTask4R1Hour.txt", "00");
-  writeFile("/timeTask4R1Minute.txt", "00");
-  writeFile("/durationTask4R1.txt", "0");
-
-  writeFile("/tempThresR1.txt", "27.0");  // Contoh nilai suhu dalam format float
-  writeFile("/humiThresR1.txt", "60.0");  // Contoh nilai kelembaban dalam format float
-  writeFile("/durationSchR1.txt", "0");
-  writeFile("/intervalSchR1.txt", "0");
-
-  writeFile("/statusSch1R1.txt", "0");
-  writeFile("/startSch1R1Hour.txt", "00");
-  writeFile("/startSch1R1Minute.txt", "00");
-  writeFile("/stopSch1R1Hour.txt", "00");
-  writeFile("/stopSch1R1Minute.txt", "00");
-
-  writeFile("/statusSch2R1.txt", "0");
-  writeFile("/startSch2R1Hour.txt", "00");
-  writeFile("/startSch2R1Minute.txt", "00");
-  writeFile("/stopSch2R1Hour.txt", "00");
-  writeFile("/stopSch2R1Minute.txt", "00");
-
-  // Menulis nilai untuk Relay 2
-  writeFile("/statusRelay2.txt", "0");
-
-  writeFile("/timeTask1R2Hour.txt", "00");
-  writeFile("/timeTask1R2Minute.txt", "00");
-  writeFile("/durationTask1R2.txt", "0");
-
-  writeFile("/timeTask2R2Hour.txt", "00");
-  writeFile("/timeTask2R2Minute.txt", "00");
-  writeFile("/durationTask2R2.txt", "0");
-
-  writeFile("/timeTask3R2Hour.txt", "00");
-  writeFile("/timeTask3R2Minute.txt", "00");
-  writeFile("/durationTask3R2.txt", "0");
-
-  writeFile("/timeTask4R2Hour.txt", "00");
-  writeFile("/timeTask4R2Minute.txt", "00");
-  writeFile("/durationTask4R2.txt", "0");
-
-  writeFile("/tempThresR2.txt", "27.0");  // Contoh nilai suhu dalam format float
-  writeFile("/humiThresR2.txt", "60.0");  // Contoh nilai kelembaban dalam format float
-  writeFile("/durationSchR2.txt", "0");
-  writeFile("/intervalSchR2.txt", "0");
-
-  writeFile("/statusSch1R2.txt", "0");
-  writeFile("/startSch1R2Hour.txt", "00");
-  writeFile("/startSch1R2Minute.txt", "00");
-  writeFile("/stopSch1R2Hour.txt", "00");
-  writeFile("/stopSch1R2Minute.txt", "00");
-
-  writeFile("/statusSch2R2.txt", "0");
-  writeFile("/startSch2R2Hour.txt", "00");
-  writeFile("/startSch2R2minute.txt", "00");
-  writeFile("/stopSch2R2Hour.txt", "00");
-  writeFile("/stopSch2R2Minute.txt", "00");
-
-  writeFile("/dateCal.txt", "2023-11-11");
-  writeFile("/timeCal.txt", "11:11");
+  writeFile("/xCal.txt", "1");
+  writeFile("/yCal.txt", "1");
   writeFile("/tempCal.txt", "1");
-  writeFile("/humiCal.txt", "1");
+  writeFile("/phCal.txt", "1");
 
-  writeFile("/tempKey.txt", "Temperature");
-  writeFile("/humiKey.txt", "Humidity");
-
-  dateCal = readFile("/dateCal.txt");
-  timeCal = readFile("/timeCal.txt");
-  setTimeNow();
+  writeFile("/tempKey.txt", "Tem");
+  writeFile("/phKey.txt", "PH");
+  writeFile("/wlKey.txt", "WL");
 }

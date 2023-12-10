@@ -13,8 +13,8 @@ void print_wakeup_reason(){
 }
 
 void goToSleep(){
-  uint64_t sleepTime = uplinkInterval * 60000;
-  esp_sleep_enable_timer_wakeup(sleepTime * 60000000);
+  uint64_t sleepTime = uplinkInterval * 60;
+  esp_sleep_enable_timer_wakeup(sleepTime * 1000000ULL);
   Serial.println("Going to sleep now");
   Serial.flush();  //clear serial buffer
   esp_deep_sleep_start();

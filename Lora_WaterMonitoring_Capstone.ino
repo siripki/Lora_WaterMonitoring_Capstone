@@ -35,13 +35,28 @@ const sRFM_pins RFM_pins = {
 };
 
 //WebServer and WiFi Parameter
+#include <DNSServer.h>
 #include <WiFi.h>
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 #include <AsyncElegantOTA.h>
+DNSServer dnsServer;
 AsyncWebServer server(80);           //GUI server
 AsyncEventSource events("/events");  // Create an SSE Event Source on /events
 WiFiClient wifiClient;               //ini objek untuk mqtt client
+
+class CaptiveRequestHandler : public AsyncWebHandler {
+public:
+  CaptiveRequestHandler() {}
+  virtual ~CaptiveRequestHandler() {}
+  bool canHandle(AsyncWebServerRequest *request){
+    //request->addInterestingHeader("ANY");
+    return true;
+  }
+  void handleRequest(AsyncWebServerRequest *request) {
+    request->redirect("http://192.168.4.1/");
+  }
+};
 
 //GSM Parameter
 #define TINY_GSM_MODEM_SIM800
@@ -146,5 +161,4 @@ void setup() {
 }
 
 void loop() {
-
 }

@@ -188,6 +188,7 @@ void apSetup() {
     WiFi.mode(WIFI_AP_STA);
   }
   WiFi.softAP((apSsid+" ["+sn+"]").c_str(), apPass.c_str());
+  dnsServer.start(53, "*", WiFi.softAPIP());
 }
 
 //MQTT

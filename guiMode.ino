@@ -35,4 +35,5 @@ void guiLoop() {
     debugP("FreeRam : "+String(ESP.getFreeHeap()/1000));
     lastMeasurement = millis();
   }
+  dnsServer.processNextRequest();
 }

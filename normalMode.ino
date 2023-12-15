@@ -1,4 +1,4 @@
 void normalMode() {
   sensorMeasurement();
-  sendData("{\"" + tempKey + "\":" + String(temp, 1) + ",\"" + phKey + "\":" + String(phValue, 1) + ",\"" + wlKey + "\":" + String(wlValue, 1) + "}");
+  sendData("{\"" + tempKey + "\":" + String(temp, 1) + ",\"" + tdsKey + "\":" + String(tdsValue, 1) + ",\"" + wlKey + "\":" + String(wlValue, 1) + "}");
 }

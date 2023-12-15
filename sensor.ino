@@ -43,20 +43,20 @@ float getTemp() {
   return temporary*tempCal;
 }
 
-float getPH() {
+float getTds() {
   int adc;
-  float ph;
+  float tds;
   for (int i = 0; i < 4; i++) {
-    adc = mafPH.addSample(ads.readADC_SingleEnded(3));
+    adc = mafTds.addSample(ads.readADC_SingleEnded(3));
   }
-  ph = adc;
-  return ph*phCal;
+  tds = adc;
+  return tds*tdsCal;
 }
 
 void sensorMeasurement() {
   temp = getTemp();
   debugP("temp " + String(temp));
-  phValue = getPH();
-  debugP("phValue " + String(phValue));
+  tdsValue = getTds();
+  debugP("tdsValue " + String(tdsValue));
   wlValue = getWaterLevel();
 }

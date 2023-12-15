@@ -134,8 +134,8 @@
                                 <div class="column col-md-4 col-sm-12 p-2">
                                     <div class="tile tile-centered">
                                         <div class="tile-content">
-                                            <div class="tile-title">Acidity (pH)</div>
-                                            <span id="phValueID" class="tile-subtitle h4" style="line-height: 1.5rem;">%phValue% </span>
+                                            <div class="tile-title">TDS</div>
+                                            <span id="tdsValueID" class="tile-subtitle h4" style="line-height: 1.5rem;">%tdsValue% </span>
                                         </div>
                                     </div>
                                 </div>
@@ -190,9 +190,9 @@
                                             </div>
                                             <div class="column col-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">pH &times; Offset</label>
-                                                    <input class="form-input" type="text" name="phCal" step="0.001"
-                                                        value="%phCal%" placeholder="pH Offset" required>
+                                                    <label class="form-label">TDS &times; Offset</label>
+                                                    <input class="form-input" type="text" name="tdsCal" step="0.001"
+                                                        value="%tdsCal%" placeholder="TDS Offset" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -222,9 +222,9 @@
                                             </div>
                                             <div class="column col-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">pH Key</label>
-                                                    <input class="form-input" type="text" name="phKey"
-                                                        value="%phKey%" placeholder="pH Key" required>
+                                                    <label class="form-label">TDS Key</label>
+                                                    <input class="form-input" type="text" name="tdsKey"
+                                                        value="%tdsKey%" placeholder="TDS Key" required>
                                                 </div>
                                             </div>
                                             <div class="column col-6 col-md-6 col-sm-12">
@@ -705,10 +705,10 @@
                         </div>
                         <div class="panel-footer">
                             <!-- centered logo or brand -->
-                            <p
+                            <!-- <p
                                 style="display: block; text-align: center; margin: 0; background-color: forestgreen; color: white;">
                                 <MARQUEE onmouseout='this.start()' onmouseover='this.stop()' scrollamount='4'>&copy Copyright 2023 | by Team 5</MARQUEE>
-                            </p>
+                            </p> -->
                         </div>
                     </div>
                 </div>
@@ -821,8 +821,8 @@
           document.getElementById("tempID").innerHTML = e.data;
          }, false);
          
-         source.addEventListener('phValue', function(e) {
-          document.getElementById("phValueID").innerHTML = e.data;
+         source.addEventListener('tdsValue', function(e) {
+          document.getElementById("tdsValueID").innerHTML = e.data;
          }, false);
 
          source.addEventListener('wlValue', function(e) {

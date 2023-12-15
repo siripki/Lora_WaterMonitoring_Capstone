@@ -19,26 +19,26 @@ void serverSetup() {
   // execute : Handle post request
   server.on("/execute", HTTP_POST, [](AsyncWebServerRequest* request) {
     if (request->authenticate(http_username.c_str(), http_password.c_str())) {
-      if (request->hasParam("xCal", true) || request->hasParam("yCal", true) || request->hasParam("tempCal", true) || request->hasParam("phCal", true)) {
+      if (request->hasParam("xCal", true) || request->hasParam("yCal", true) || request->hasParam("tempCal", true) || request->hasParam("tdsCal", true)) {
         xCal = request->getParam("xCal", true)->value().toFloat();
         yCal = request->getParam("yCal", true)->value().toFloat();
         tempCal = request->getParam("tempCal", true)->value().toFloat();
-        phCal = request->getParam("phCal", true)->value().toFloat();
+        tdsCal = request->getParam("tdsCal", true)->value().toFloat();
 
         writeFile("/xCal.txt", String(xCal).c_str());
         writeFile("/yCal.txt", String(yCal).c_str());
         writeFile("/tempCal.txt", String(tempCal).c_str());
-        writeFile("/phCal.txt", String(phCal).c_str());
+        writeFile("/tdsCal.txt", String(tdsCal).c_str());
       }
 
-      else if (request->hasParam("tempKey", true) || request->hasParam("phKey", true) || request->hasParam("wlKey", true)) {
+      else if (request->hasParam("tempKey", true) || request->hasParam("tdsKey", true) || request->hasParam("wlKey", true)) {
         tempKey = request->getParam("tempKey", true)->value();
-        phKey = request->getParam("phKey", true)->value();
+        tdsKey = request->getParam("tdsKey", true)->value();
         wlKey = request->getParam("wlKey", true)->value();
      
 
         writeFile("/tempKey.txt", tempKey.c_str());
-        writeFile("/phKey.txt", phKey.c_str());
+        writeFile("/tdsKey.txt", tdsKey.c_str());
         writeFile("/wlKey.txt", wlKey.c_str());
       }
 
@@ -191,7 +191,7 @@ void serverSetup() {
 void serverSentEvents() {
   //events.send("ping", NULL, millis());
   events.send(String(temp).c_str(), "temp", millis());
-  events.send(String(phValue).c_str(), "phValue", millis());
+  events.send(String(tdsValue).c_str(), "tdsValue", millis());
   events.send(String(wlValue).c_str(), "wlValue", millis());
   events.send(String(yValue).c_str(), "yValue", millis());
 }
@@ -201,8 +201,8 @@ String processor(const String& var) {
     return String(temp);
   }
 
-  else if (var == "phValue") {
-    return String(phValue);
+  else if (var == "tdsValue") {
+    return String(tdsValue);
   }
 
   else if (var == "wlValue") {
@@ -225,16 +225,16 @@ String processor(const String& var) {
     return String(tempCal);
   }
 
-  else if (var == "phCal") {
-    return String(phCal);
+  else if (var == "tdsCal") {
+    return String(tdsCal);
   }
 
   else if (var == "tempKey") {
     return tempKey;
   }
 
-  else if (var == "phKey") {
-    return phKey;
+  else if (var == "tdsKey") {
+    return tdsKey;
   }
 
   else if (var == "wlKey") {

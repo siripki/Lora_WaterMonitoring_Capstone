@@ -79,7 +79,7 @@ PubSubClient mqttGsm(gsmClient);
 #include "MovingAverage.h"
 MovingAverage mafWL(4);
 MovingAverage mafTemp(4);
-MovingAverage mafPH(4);
+MovingAverage mafTds(4);
 
 //Global Variabel
 bool guiMode = false;
@@ -126,17 +126,17 @@ String broker;
 uint8_t uplinkInterval;
 
 float temp;
-float phValue;
+float tdsValue;
 float wlValue;
 float yValue;
 
 float xCal;
 float yCal;
 float tempCal;
-float phCal;
+float tdsCal;
 
 String tempKey;
-String phKey;
+String tdsKey;
 String wlKey;
 
 

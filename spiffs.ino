@@ -86,10 +86,10 @@ void readSettings() {
   xCal = readFile("/xCal.txt").toFloat();
   yCal = readFile("/yCal.txt").toFloat();
   tempCal = readFile("/tempCal.txt").toFloat();
-  phCal = readFile("/phCal.txt").toFloat();
+  tdsCal = readFile("/tdsCal.txt").toFloat();
 
   tempKey = readFile("/tempKey.txt");
-  phKey = readFile("/phKey.txt");
+  tdsKey = readFile("/tdsKey.txt");
   wlKey = readFile("/wlKey.txt");
 }
 
@@ -141,9 +141,9 @@ void dataDefault() {
   writeFile("/xCal.txt", "1");
   writeFile("/yCal.txt", "1");
   writeFile("/tempCal.txt", "1");
-  writeFile("/phCal.txt", "1");
+  writeFile("/tdsCal.txt", "1");
 
   writeFile("/tempKey.txt", "Tem");
-  writeFile("/phKey.txt", "PH");
+  writeFile("/tdsKey.txt", "TDS");
   writeFile("/wlKey.txt", "WL");
 }

@@ -9,6 +9,8 @@
 
 byte guiButton = 13;
 byte ledPin = 14;
+byte mosfetPin = 12;
+byte tdsPin = 15;
 
 //Ultrasonic Parameter
 byte trigPin = 32;
@@ -35,12 +37,10 @@ const sRFM_pins RFM_pins = {
 };
 
 //WebServer and WiFi Parameter
-#include <DNSServer.h>
 #include <WiFi.h>
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 #include <AsyncElegantOTA.h>
-DNSServer dnsServer;
 AsyncWebServer server(80);           //GUI server
 AsyncEventSource events("/events");  // Create an SSE Event Source on /events
 WiFiClient wifiClient;               //ini objek untuk mqtt client
@@ -142,6 +142,10 @@ String wlKey;
 
 void setup() {
   Serial.begin(115200);
+  pinMode(tdsPin, OUTPUT);
+  digitalWrite(tdsPin, 0);
+  pinMode(mosfetPin, OUTPUT);
+  sensorOff();
   spiffSetup();
   readSettings();
   sensorSetup();

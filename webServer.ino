@@ -181,7 +181,6 @@ void serverSetup() {
     // and set reconnect delay to 1 second
     client->send("hello!", NULL, millis(), 10000);
   });
-  server.addHandler(new CaptiveRequestHandler()).setFilter(ON_AP_FILTER);//only when requested from AP
   server.addHandler(&events);
 
   AsyncElegantOTA.begin(&server);

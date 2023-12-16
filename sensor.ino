@@ -1,3 +1,12 @@
+void sensorOn() {
+  digitalWrite(mosfetPin, 1);
+  delay(10);
+}
+void sensorOff() {
+  digitalWrite(mosfetPin, 0);
+  delay(10);
+}
+
 void sensorSetup() {
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
@@ -34,29 +43,56 @@ float getWaterLevel() {
 }
 
 float getTemp() {
+  sensorOn();
   float temporary;
   dallas.setResolution(10);
   for (int i = 0; i < 4; i++) {
-    dallas.requestTemperatures();                              // Perintah konversi suhu
-    temporary = mafTemp.addSample(dallas.getTempCByIndex(0));  //Membaca data suhu dari sensor #0 dan mengkonversikannya ke nilai Celsius
+    dallas.requestTemperatures();
+    temporary = mafTemp.addSample(dallas.getTempCByIndex(0));
   }
-  return temporary*tempCal;
+  sensorOff();
+  return temporary * tempCal;
 }
 
 float getTds() {
+  int R1 = 1000;
+  int Ra = 25;  //Resistance of powering Pins
   int adc;
-  float tds;
-  for (int i = 0; i < 4; i++) {
-    adc = mafTds.addSample(ads.readADC_SingleEnded(3));
-  }
-  tds = adc;
-  return tds*tdsCal;
+  float Vin = 3.31;
+  float K = 2.88;
+  float TempCoef = 0.019;
+  float PPMconversion = 0.5;
+  float R2;
+  float volt;
+  float ppm;
+  float EC;
+  float EC25;
+  R1 = R1 + Ra;
+  digitalWrite(tdsPin, 1);
+  adc = ads.readADC_SingleEnded(3);
+  adc = ads.readADC_SingleEnded(3);
+  digitalWrite(tdsPin, 0);
+
+  volt = ads.computeVolts(adc);
+  debugP("volt : "+String(volt));
+  R2 = (volt * R1) / (Vin - volt);
+  R2 = R2 - Ra;  //acounting for Digital Pin Resitance
+  debugP("R2 : "+String(R2));
+  EC = 1000 / (R2 * K);
+
+  //*************Compensating For Temperaure********************//
+  EC25 = EC / (1 + TempCoef * (temp - 25.0));
+  ppm = (EC25) * (PPMconversion * 1000);
+  if (ppm < 0) ppm = 0;
+
+  return ppm * tdsCal;
 }
 
 void sensorMeasurement() {
   temp = getTemp();
-  debugP("temp " + String(temp));
   tdsValue = getTds();
-  debugP("tdsValue " + String(tdsValue));
   wlValue = getWaterLevel();
+  debugP("Temp : " + String(temp));
+  debugP("TDS  : " + String(tdsValue));
+  debugP("Wl   : " + String(wlValue));
 }

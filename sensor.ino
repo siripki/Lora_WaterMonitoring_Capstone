@@ -85,7 +85,27 @@ float getTds() {
   ppm = (EC25) * (PPMconversion * 1000);
   if (ppm < 0) ppm = 0;
 
+  ppm = regressPPM(ppm);
+
   return ppm * tdsCal;
+}
+double regressPPM(double x) {
+  double terms[] = {
+     4.1627738633785293e+002,
+    -1.0102962196657776e+001,
+     9.5286194323760898e-002,
+    -3.4095759900173674e-004,
+     4.4112141851224321e-007
+  };
+  
+  double t = 1;
+  double r = 0;
+  for (double c : terms) {
+    r += c * t;
+    t *= x;
+  }
+  if (x <= 5) r = 0;
+  return r;
 }
 
 void sensorMeasurement() {
